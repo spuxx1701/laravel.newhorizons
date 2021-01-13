@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use DB;
 use App\Models\BugReport;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB as FacadesDB;
 
 class BugReportController extends Controller
 {
@@ -14,9 +16,19 @@ class BugReportController extends Controller
      */
     public function index()
     {
-        $bugReports = BugReport::latest()->paginate(5);
-        return view("bug-reports.index", compact("bug-reports"))
-            ->with("i", (request()->input("page", 1) - 1) * 5);
+        $bugReports = BugReport::all();
+        return response()->jsonApi(["data" => $bugReports], 200);
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Models\BugReport  $bugReport
+     * @return \Illuminate\Http\Response
+     */
+    public function show(BugReport $id)
+    {
+        return response()->jsonApi(["data" => $id], 200);
     }
 
     /**
@@ -26,7 +38,6 @@ class BugReportController extends Controller
      */
     public function create()
     {
-        return view("bug-reports.create");
     }
 
     /**
@@ -37,25 +48,16 @@ class BugReportController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+        /*$request->validate([
             "description" => "required",
             "reproduction" => "required"
         ]);
         BugReport::create($request->all());
-        return redirect()->route("bug-reports.index")
-            ->with("success", "Bug report created successfully.");
+        return redirect()->route("bug-report.index")
+            ->with("success", "Bug report created successfully.");*/
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\BugReport  $bugReport
-     * @return \Illuminate\Http\Response
-     */
-    public function show(BugReport $bugReport)
-    {
-        return view("bug-reports.show", compact("bug-report"));
-    }
+
 
     /**
      * Show the form for editing the specified resource.
@@ -65,7 +67,7 @@ class BugReportController extends Controller
      */
     public function edit(BugReport $bugReport)
     {
-        return view("bug-reports.edit", compact("bug-report"));
+        //return view("bug-report.edit", compact("bug-report"));
     }
 
     /**
@@ -93,7 +95,7 @@ class BugReportController extends Controller
     public function destroy(BugReport $bugReport)
     {
         $bugReport->delete();
-        return redirect()->route("bug-reports.index")
+        return redirect()->route("bug-report.index")
             ->with("success", "Bug report deleted successfully.");
     }
 }
