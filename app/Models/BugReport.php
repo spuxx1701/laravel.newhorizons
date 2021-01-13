@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class BugReport extends Model
 {
     use HasFactory;
-    protected $table = "bug-reports";
+    protected $table = "bug_report";
     public $timestamps = true;
     protected $fillable = [
         "description",
