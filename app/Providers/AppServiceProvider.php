@@ -24,10 +24,5 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        // add JSON:API headers to all responses
-        Response::macro('jsonApi', function ($content, $statusCode) {
-            return Response::json($content, $statusCode)
-                ->header('Content-Type', 'application/vnd.api+json');
-        });
     }
 }
