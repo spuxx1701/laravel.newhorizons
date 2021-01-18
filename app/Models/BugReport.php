@@ -11,6 +11,7 @@ class BugReport extends Model
     protected $table = "bug_report";
     public $timestamps = true;
     protected $fillable = [
+        "error",
         "description",
         "reproduction",
         "applog",
