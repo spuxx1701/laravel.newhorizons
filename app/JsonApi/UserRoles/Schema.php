@@ -1,6 +1,6 @@
 <?php
 
-namespace App\JsonApi\BugReports;
+namespace App\JsonApi\UserRoles;
 
 use Neomerx\JsonApi\Schema\SchemaProvider;
 
@@ -10,10 +10,10 @@ class Schema extends SchemaProvider
     /**
      * @var string
      */
-    protected $resourceType = 'bug-reports';
+    protected $resourceType = 'user-roles';
 
     /**
-     * @param \App\BugReport $resource
+     * @param \App\UserRole $resource
      *      the domain record being serialized.
      * @return string
      */
@@ -23,16 +23,15 @@ class Schema extends SchemaProvider
     }
 
     /**
-     * @param \App\BugReport $resource
+     * @param \App\UserRole $resource
      *      the domain record being serialized.
      * @return array
      */
     public function getAttributes($resource)
     {
         return [
-            "description" => $resource->description,
-            "reproduction" => $resource->reproduction,
-            'createdAt' => $resource->created_at
+            'createdAt' => $resource->created_at,
+            'updatedAt' => $resource->updated_at,
         ];
     }
 }

@@ -66,7 +66,9 @@ return [
     | `'posts' => App\Post::class`
     */
     'resources' => [
-        'bug-reports' => \App\Models\BugReport::class
+        'bug-reports' => \App\Models\BugReport::class,
+        'users' => \App\Models\User::class,
+        'email-verifications' => \App\Models\EmailVerification::class
     ],
 
     /*

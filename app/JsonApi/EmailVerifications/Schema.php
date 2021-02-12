@@ -1,6 +1,6 @@
 <?php
 
-namespace App\JsonApi\BugReports;
+namespace App\JsonApi\EmailVerifications;
 
 use Neomerx\JsonApi\Schema\SchemaProvider;
 
@@ -10,10 +10,10 @@ class Schema extends SchemaProvider
     /**
      * @var string
      */
-    protected $resourceType = 'bug-reports';
+    protected $resourceType = 'email-verifications';
 
     /**
-     * @param \App\BugReport $resource
+     * @param \App\EmailVerification $resource
      *      the domain record being serialized.
      * @return string
      */
@@ -23,16 +23,13 @@ class Schema extends SchemaProvider
     }
 
     /**
-     * @param \App\BugReport $resource
+     * @param \App\EmailVerification $resource
      *      the domain record being serialized.
      * @return array
      */
     public function getAttributes($resource)
     {
-        return [
-            "description" => $resource->description,
-            "reproduction" => $resource->reproduction,
-            'createdAt' => $resource->created_at
-        ];
+        // no need to return any properties since the caller is only interested in the status code
+        return [];
     }
 }
