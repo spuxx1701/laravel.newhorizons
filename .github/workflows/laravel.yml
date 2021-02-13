@@ -64,6 +64,6 @@ jobs:
           port: ${{ secrets.SSH_PORT }} 
           script: |
             dir
-            cd /new-horizons-game.com/api
+            cd ${{ secrets.DEPLOY_LOCATION }}
             git checkout -f 
             git pull
