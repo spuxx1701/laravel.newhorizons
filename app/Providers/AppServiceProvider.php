@@ -3,6 +3,8 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use CloudCreativity\LaravelJsonApi\LaravelJsonApi;
+
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -13,7 +15,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        // include information about why validations failed into the responses
+        //LaravelJsonApi::showValidatorFailures();
     }
 
     /**
@@ -23,6 +26,5 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
     }
 }
