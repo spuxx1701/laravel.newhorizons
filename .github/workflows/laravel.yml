@@ -64,5 +64,5 @@ jobs:
           port: ${{ secrets.SSH_PORT }} 
           script: |
             cd ${{ secrets.DEPLOY_LOCATION }}
-            git checkout -f 
+            git checkout -f master
             git pull
