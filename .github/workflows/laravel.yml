@@ -63,7 +63,6 @@ jobs:
           username: ${{ secrets.SSH_USERNAME }}
           port: ${{ secrets.SSH_PORT }} 
           script: |
-            whoami
-# cd ${{ secrets.DEPLOY_LOCATION }}
-# git checkout -f 
-# git pull
+            cd ${{ secrets.DEPLOY_LOCATION }}
+            git checkout -f 
+            git pull
