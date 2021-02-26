@@ -39,4 +39,3 @@ jobs:
             git fetch
             git checkout -f
             git pull origin master
-            composer update
