@@ -19,7 +19,7 @@ return [
 
     'allowed_methods' => ['*'],
 
-    'allowed_origins' => ['http://www.new-horizons-game.com', 'localhost'],
+    'allowed_origins' => ['*.new-horizons-game.com'],
 
     'allowed_origins_patterns' => [],
 
