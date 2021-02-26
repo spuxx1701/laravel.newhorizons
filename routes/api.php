@@ -18,7 +18,7 @@ use App\Models\User;
 */
 
 Route::group([
-    "middleware" => "api"
+    "middleware" => "api-local"
 ], function ($router) {
     JsonApi::register('default')->withNamespace('App\Http\Controllers\Api')->singularControllers()->routes(function ($api) {
         $api->resource('bug-reports');
@@ -30,7 +30,7 @@ Route::group([
 });
 
 Route::group([
-    'middleware' => 'api',
+    'middleware' => 'api-local',
     'prefix' => 'auth'
 ], function ($router) {
     Route::post('login', 'App\Http\Controllers\AuthController@login');
