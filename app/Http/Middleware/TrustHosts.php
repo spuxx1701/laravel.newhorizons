@@ -37,7 +37,9 @@ class TrustHosts extends Middleware
             $this->allSubdomainsOfApplicationUrl(),
             $this->app['config']->get('app.url'),
             "127.0.0.1",
-            "localhost"
+            "localhost",
+            "www.new-horizons-game.com",
+            "new-horizons-game.com"
         ];
     }
 }

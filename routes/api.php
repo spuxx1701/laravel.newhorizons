@@ -17,20 +17,20 @@ use App\Models\User;
 |
 */
 
-JsonApi::register('default')->withNamespace('App\Http\Controllers\Api')->singularControllers()->routes(function ($api) {
-    $api->resource('bug-reports');
-    $api->resource("users")->relationships(function ($relations) {
-        $relations->hasMany("userRoles");
-    })->only("create")->controller();
-    $api->resource("email-verifications")->only("read")->controller();
+Route::group(["middleware" => "api-private"], function ($router) {
+    JsonApi::register('default')->withNamespace('App\Http\Controllers\Api')->singularControllers()->routes(function ($api) {
+        $api->resource('bug-reports');
+        $api->resource("users")->relationships(function ($relations) {
+            $relations->hasMany("userRoles");
+        })->only("create")->controller();
+        $api->resource("email-verifications")->only("read")->controller();
+    });
 });
 
 Route::group([
-
-    'middleware' => 'api',
+    'middleware' => 'api-private',
     'prefix' => 'auth'
 ], function ($router) {
-
     Route::post('login', 'App\Http\Controllers\AuthController@login');
     Route::post('logout', 'App\Http\Controllers\AuthController@logout');
     Route::post('refresh', 'App\Http\Controllers\AuthController@refresh');
