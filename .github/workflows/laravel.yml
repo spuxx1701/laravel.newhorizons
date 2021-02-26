@@ -65,6 +65,7 @@ jobs:
           username: ${{ secrets.SSH_USERNAME }}
           port: ${{ secrets.SSH_PORT }} 
           script: |
+            cp -vr ${{ secrets.DEPLOY_LOCATION }} backup
             cd ${{ secrets.DEPLOY_LOCATION }}
             git fetch
             git checkout -f
