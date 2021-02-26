@@ -36,7 +36,8 @@ jobs:
           passphrase: ${{ secrets.SSH_PASSPHRASE }} 
           username: ${{ secrets.SSH_USERNAME }}
           script: |
-            cp -vr ${{ secrets.DEPLOY_LOCATION }} backup
+            rm -rf backup/${{ secrets.DEPLOY_LOCATION }}
+            cp -f ${{ secrets.DEPLOY_LOCATION }} backup
             cd ${{ secrets.DEPLOY_LOCATION }}
             git fetch
             git checkout -f
