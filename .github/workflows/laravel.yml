@@ -41,5 +41,5 @@ jobs:
             cd ${{ secrets.DEPLOY_LOCATION }}
             git fetch
             git checkout -f
-            git pull
+            git pull origin master
             composer update
