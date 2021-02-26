@@ -4,15 +4,9 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <title>New Horizons</title>
-
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Raleway:200,100,400" rel="stylesheet" type="text/css" />
-    <link href='https://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css' />
-
     <!-- Styles -->
-    <style>
+    <!--<style>
         /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
         :root {
             --colorDeepSpace: #0e1015;
@@ -90,23 +84,6 @@
             align-items: center;
         }
 
-        h1,
-        .h1,
-        h2,
-        .h2,
-        h3,
-        .h3,
-        h4,
-        .h4,
-        h5,
-        .h5,
-        h6,
-        .h6 {
-            margin-bottom: 0;
-            margin-top: 0;
-            color: var(--colorTextHighlight);
-        }
-
         p {
             color: var(--colorTextDefault);
             margin: 5px 0 5px 0;
@@ -139,50 +116,23 @@
             width: 100%;
             word-wrap: anywhere;
         }
-    </style>
+    </style>-->
 
 </head>
 
-<body>
-    <div class="outer">
-        <div class="branding-bar"></div>
-        <div class="header-toolbar">
-            <a href="https://www.new-horizons-game.com">
-                <h1 class="neon">New Horizons</h1>
-            </a>
-        </div>
-        <div class="inner">
-            <div class="panel">
-                <h3>Herzlich Willkommen!</h3>
-                <p>Wir freuen uns, dass Du ein Teil der Entwicklung von New Horizons sein möchtest. Wir haben Deine Registrierung erhalten. Die Kontodaten lauten folgenermaßen:</p><br>
-                <table>
-                    <tr>
-                        <td>Benutzername:</td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <h4>{{ $user->username }}</h4>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>E-Mail:</td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <h4>{{ $user->email }}</h4>
-                        </td>
-                    </tr>
-                </table><br>
-                <p>Damit Deine Registrierung abgeschlossen wird und Du Dein Konto verwenden kannst, musst Du Deine Anmeldung noch bestätigen. Klicke dazu einfach auf diesen Link:</p>
-                <a href="https://www.new-horizons-game.com/verify?code={{ $verificationCode }}">https://www.new-horizons-game.com/verify?code={{ $verificationCode }}</a>
-                <p>Bitte beachte, dass Du Deine Anmeldung innerhalb von 48 Stunden bestätigen musst. Geschieht das nicht, wird Dein Konto automatisch gelöscht.
-                    Wenn Du die Anmeldung nicht selbst veranlasst hast oder doch kein Konto ertellen möchtest, musst Du nichts weiter tun und kannst diese E-Mail ignorieren.</p><br>
-                <p>Wir freuen uns darauf, Dich bald im Sonnennsystem des 23. Jahrhunderts wiederzusehen! o7</p><br>
-                <h4>Bis bald</h4>
-                <h4>Spuxx aka Leo</h4>
-            </div>
-        </div>
-    </div>
+<body style="font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; color: #2c2c2c;">
+    <h3>Herzlich Willkommen!</h3>
+    <p>Wir freuen uns, dass Du ein Teil der Entwicklung von New Horizons sein möchtest. Wir haben Deine Registrierung erhalten. Die Kontodaten lauten folgendermaßen:</p>
+    <p style="font-weight: 1000">Benutzername: {{ $user->username }} </p>
+    <p style="font-weight: 1000">E-Mail: {{ $user->email }}</p>
+    <p>Damit Deine Registrierung abgeschlossen wird und Du Dein Konto verwenden kannst, musst Du Deine Anmeldung noch bestätigen. Klicke dazu einfach auf diesen Link:</p>
+    <a href="https://www.new-horizons-game.com/verify?code={{ $verificationCode }}">https://www.new-horizons-game.com/verify?code={{ $verificationCode }}</a>
+    <p>Bitte beachte, dass Du Deine Anmeldung innerhalb von 48 Stunden bestätigen musst. Geschieht das nicht, wird Dein Konto automatisch gelöscht.
+        Wenn Du die Anmeldung nicht selbst veranlasst hast oder doch kein Konto ertellen möchtest, musst Du nichts weiter tun und kannst diese E-Mail ignorieren.</p>
+    <p>Wir freuen uns darauf, Dich bald im Sonnennsystem des 23. Jahrhunderts wiederzusehen! o7</p><br>
+    <p style="font-weight: 1000">Bis bald</p>
+    <p style="font-weight: 1000">Spuxx aka Leo</p>
+    <a href="https://www.new-horizons-game.com">New Horizons</a>
 </body>
 
 </html>

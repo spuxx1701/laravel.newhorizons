@@ -46,7 +46,6 @@ class Kernel extends HttpKernel
         'api-local' => [
             'throttle:api',
             //\App\Http\Middleware\TrustHosts::class,
-            //\Fruitcake\Cors\HandleCors::class,
         ],
     ];
 
