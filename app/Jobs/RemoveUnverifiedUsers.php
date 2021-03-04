@@ -33,17 +33,18 @@ class RemoveUnverifiedUsers implements ShouldQueue
      */
     public function handle()
     {
-        // Go over all entries in the email verification table that are at least 24 hours old
+        // Go over all entries in the email verification table that are at least 48 hours old
         $datetime = new DateTime();
         foreach (EmailVerification::all() as $emailVerification) {
             $createdAt = $emailVerification->created_at;
             $interval = date_diff($createdAt, $datetime);
             $deltaDays = $interval->format("%a");
             if ($deltaDays < 2) continue;
-            // remove both the user and the entry in the email verification table
+            // find and remove the user
             if ($user = User::find($emailVerification->user_id)) {
                 $user->delete();
             }
+            // make sure to remove any verification entries that are overdue
             $emailVerification->delete();
         }
     }

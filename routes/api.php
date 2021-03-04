@@ -17,6 +17,7 @@ use App\Models\User;
 |
 */
 
+// JSONApi
 Route::group([
     "middleware" => "api-local"
 ], function ($router) {
@@ -25,10 +26,13 @@ Route::group([
         $api->resource("users")->relationships(function ($relations) {
             $relations->hasMany("userRoles");
         })->only("create")->controller();
-        $api->resource("email-verifications")->only("read")->controller();
+        $api->resource("email-verifications")->only("read")->controller()/*->routes(function ($emailVerifications) {
+            $emailVerifications->get('{record}/request', 'request');
+        })*/;
     });
 });
 
+// Authorization
 Route::group([
     'middleware' => 'api-local',
     'prefix' => 'auth'
@@ -37,6 +41,14 @@ Route::group([
     Route::post('logout', 'App\Http\Controllers\AuthController@logout');
     Route::post('refresh', 'App\Http\Controllers\AuthController@refresh');
     Route::post('me', 'App\Http\Controllers\AuthController@me');
+});
+
+// Actions that don't require authentication
+Route::group([
+    "middleware" => "api-local",
+    "prefix" => "actions"
+], function ($router) {
+    Route::get("send-verification-code", "App\Http\Controllers\ActionController@sendVerificationCode");
 });
 
 Route::fallback(function () {

@@ -66,4 +66,10 @@ class User extends Authenticatable implements MustVerifyEmail, JWTSubject
     {
         return [];
     }
+
+    // Get the user roles for the user.
+    public function userRoles()
+    {
+        return $this->hasMany(UserRole::class);
+    }
 }

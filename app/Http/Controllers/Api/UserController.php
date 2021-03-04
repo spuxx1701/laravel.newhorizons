@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use CloudCreativity\LaravelJsonApi\Http\Controllers\JsonApiController;
 use App\Jobs\SendConfirmEmail;
 use App\Models\EmailVerification;
+use App\Models\UserRole;
 
 class UserController extends JsonApiController
 {
