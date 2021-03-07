@@ -4,7 +4,6 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
-use App\Models\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,8 +16,9 @@ use App\Models\User;
 |
 */
 
+// JSONApi (local, not authenticated)
 Route::group([
-    "middleware" => "api-local"
+    "middleware" => "trust-hosts"
 ], function ($router) {
     JsonApi::register('default')->withNamespace('App\Http\Controllers\Api')->singularControllers()->routes(function ($api) {
         $api->resource('bug-reports');
@@ -26,17 +26,35 @@ Route::group([
             $relations->hasMany("userRoles");
         })->only("create")->controller();
         $api->resource("email-verifications")->only("read")->controller();
+        $api->resource("password-resets")->only("read", "update")->controller()/*->routes(function ($actions) {
+            $actions->post("{record}/update-password", "updatePassword");
+        })*/;
     });
 });
 
+/*// JSONApi (local, authenticated)
 Route::group([
-    'middleware' => 'api-local',
+    'middleware' => ['api-local']
+]);*/
+
+// Authentication
+Route::group([
+    "middleware" => "trust-hosts",
     'prefix' => 'auth'
 ], function ($router) {
     Route::post('login', 'App\Http\Controllers\AuthController@login');
     Route::post('logout', 'App\Http\Controllers\AuthController@logout');
     Route::post('refresh', 'App\Http\Controllers\AuthController@refresh');
     Route::post('me', 'App\Http\Controllers\AuthController@me');
+});
+
+// Actions that don't require authentication
+Route::group([
+    "middleware" => "trust-hosts",
+    "prefix" => "actions"
+], function ($router) {
+    Route::get("send-verification-code", "App\Http\Controllers\ActionController@sendVerificationCode");
+    Route::get("send-password-reset-code", "App\Http\Controllers\ActionController@sendPasswordResetCode");
 });
 
 Route::fallback(function () {

@@ -126,13 +126,12 @@
     <p style="font-weight: 1000">Benutzername: {{ $user->username }} </p>
     <p style="font-weight: 1000">E-Mail: {{ $user->email }}</p>
     <p>Damit Deine Registrierung abgeschlossen wird und Du Dein Konto verwenden kannst, musst Du Deine Anmeldung noch bestätigen. Klicke dazu einfach auf diesen Link:</p>
-    <a href="https://www.new-horizons-game.com/verify?code={{ $verificationCode }}">https://www.new-horizons-game.com/verify?code={{ $verificationCode }}</a>
+    <a href="https://www.new-horizons-game.com/request/verify?code={{ $verificationCode }}">https://www.new-horizons-game.com/request/verify?code={{ $verificationCode }}</a>
     <p>Bitte beachte, dass Du Deine Anmeldung innerhalb von 48 Stunden bestätigen musst. Geschieht das nicht, wird Dein Konto automatisch gelöscht.
         Wenn Du die Anmeldung nicht selbst veranlasst hast oder doch kein Konto ertellen möchtest, musst Du nichts weiter tun und kannst diese E-Mail ignorieren.</p>
     <p>Wir freuen uns darauf, Dich bald im Sonnennsystem des 23. Jahrhunderts wiederzusehen! o7</p><br>
     <p style="font-weight: 1000">Bis bald</p>
-    <p style="font-weight: 1000">Spuxx aka Leo</p>
-    <a href="https://www.new-horizons-game.com">New Horizons</a>
+    <a href="https://www.new-horizons-game.com">Das Team von New Horizons</a>
 </body>
 
 </html>

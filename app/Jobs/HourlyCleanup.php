@@ -8,11 +8,10 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
-use App\Models\EmailVerification;
-use App\Models\User;
+use App\Models\PasswordReset;
 use DateTime;
 
-class RemoveUnverifiedUsers implements ShouldQueue
+class HourlyCleanup implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
@@ -33,18 +32,15 @@ class RemoveUnverifiedUsers implements ShouldQueue
      */
     public function handle()
     {
-        // Go over all entries in the email verification table that are at least 24 hours old
+        // get current datetime
         $datetime = new DateTime();
-        foreach (EmailVerification::all() as $emailVerification) {
-            $createdAt = $emailVerification->created_at;
+        // remove password reset records older than 60 minutes
+        foreach (PasswordReset::all() as $passwordReset) {
+            $createdAt = $passwordReset->created_at;
             $interval = date_diff($createdAt, $datetime);
-            $deltaDays = $interval->format("%a");
-            if ($deltaDays < 2) continue;
-            // remove both the user and the entry in the email verification table
-            if ($user = User::find($emailVerification->user_id)) {
-                $user->delete();
-            }
-            $emailVerification->delete();
+            $deltaHours = $interval->format("%h");
+            if ($deltaHours < 1) continue;
+            $passwordReset->delete();
         }
     }
 }

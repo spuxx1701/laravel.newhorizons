@@ -2,7 +2,8 @@
 
 namespace App\Console;
 
-use App\Jobs\RemoveUnverifiedUsers;
+use App\Jobs\DailyCleanup;
+use App\Jobs\HourlyCleanup;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -25,7 +26,8 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->job(new RemoveUnverifiedUsers)->everyMinute();
+        $schedule->job(new HourlyCleanup)->hourly();
+        $schedule->job(new DailyCleanup)->daily();
     }
 
     /**

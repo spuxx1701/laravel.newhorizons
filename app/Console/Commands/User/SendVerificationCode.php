@@ -42,6 +42,7 @@ class SendVerificationCode extends Command
         $email = $this->argument("email");
         if ($user = User::firstWhere("email", $email)) {
             SendConfirmEmail::dispatch($user);
+            echo "Verification code sent to " . $email . ".";
         } else {
             throw new \Exception("No user with email " . $email . ".");;
         }

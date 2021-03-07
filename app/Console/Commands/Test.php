@@ -37,6 +37,7 @@ class Test extends Command
      */
     public function handle()
     {
+        \App\Jobs\HourlyCleanup::dispatch();
         return 0;
     }
 }
