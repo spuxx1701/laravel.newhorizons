@@ -41,5 +41,9 @@ jobs:
             cd ${{ secrets.DEPLOY_LOCATION }}
             git fetch
             git checkout -f
+            php artisan migrate
+            php artisan cache:clear
+            php artisan route:cache
+            php artisan config:cache
             git pull origin master
             composer update
