@@ -11,6 +11,7 @@ use App\Models\PasswordReset;
 class ResetPassword extends Mailable
 {
     use Queueable, SerializesModels;
+    public $frontendUrl;
     public $passwordReset;
     public $passwordResetCode;
 
@@ -23,6 +24,7 @@ class ResetPassword extends Mailable
     {
         $this->passwordReset = $passwordReset;
         $this->passwordResetCode = $passwordReset->id;
+        $this->frontendUrl = env("FRONTEND_URL");
     }
 
     /**

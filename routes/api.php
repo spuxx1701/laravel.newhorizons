@@ -19,12 +19,12 @@ use Illuminate\Validation\ValidationException;
 // JSONApi (local, not authenticated)
 Route::group([], function ($router) {
     JsonApi::register('default')->withNamespace('App\Http\Controllers\Api')->singularControllers()->routes(function ($api) {
-        $api->resource('bug-reports');
+        $api->resource('bug-reports')->only("create");
         $api->resource("users")->relationships(function ($relations) {
             $relations->hasMany("userRoles");
         })->only("create")->controller();
         $api->resource("email-verifications")->only("read")->controller();
-        $api->resource("password-resets")->only("read", "update")->controller()/*->routes(function ($actions) {
+        $api->resource("password-resets")->only("read", "update")->controller()->middleware("throttle:reset-password");/*->routes(function ($actions) {
             $actions->post("{record}/update-password", "updatePassword");
         })*/;
     });
@@ -50,7 +50,7 @@ Route::group([
     "prefix" => "actions"
 ], function ($router) {
     Route::get("send-verification-code", "App\Http\Controllers\ActionController@sendVerificationCode");
-    Route::get("send-password-reset-code", "App\Http\Controllers\ActionController@sendPasswordResetCode");
+    Route::get("send-password-reset-code", "App\Http\Controllers\ActionController@sendPasswordResetCode")->middleware("throttle:reset-password");
 });
 
 Route::fallback(function () {
