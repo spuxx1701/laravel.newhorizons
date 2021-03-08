@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class TrustHosts extends Middleware
 {
-    /*public function handle(Request $request, $next)
+    public function handle(Request $request, $next)
     {
         // check the ip adress
         $ip = $request->ip();
@@ -18,13 +18,13 @@ class TrustHosts extends Middleware
                 return $next($request);
             }
         }
-        return response()->json(['your ip address is not valid.']);
+        return response()->json(['Your ip address is not valid.']);
     }
 
     protected function shouldSpecifyTrustedHosts()
     {
         return true;
-    }*/
+    }
 
     /**
      * Get the host patterns that should be trusted.
@@ -36,10 +36,8 @@ class TrustHosts extends Middleware
         return [
             $this->allSubdomainsOfApplicationUrl(),
             $this->app['config']->get('app.url'),
-            "127.0.0.1",
-            "localhost",
-            "www.new-horizons-game.com",
-            "new-horizons-game.com"
+            $this->app['config']->get('app.frontendUrl'),
+            "127.0.0.1"
         ];
     }
 }

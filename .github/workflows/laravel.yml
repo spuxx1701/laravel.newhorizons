@@ -39,3 +39,8 @@ jobs:
             git fetch
             git checkout -f
             git pull origin master
+            composer update
+            php artisan migrate
+            php artisan cache:clear
+            php artisan route:cache
+            php artisan config:cache
