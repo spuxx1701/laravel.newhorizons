@@ -17,9 +17,7 @@ use Illuminate\Validation\ValidationException;
 */
 
 // JSONApi (local, not authenticated)
-Route::group([
-    "middleware" => "local"
-], function ($router) {
+Route::group([], function ($router) {
     JsonApi::register('default')->withNamespace('App\Http\Controllers\Api')->singularControllers()->routes(function ($api) {
         $api->resource('bug-reports');
         $api->resource("users")->relationships(function ($relations) {
@@ -39,7 +37,6 @@ Route::group([
 
 // Authentication
 Route::group([
-    "middleware" => "local",
     'prefix' => 'auth'
 ], function ($router) {
     Route::post('login', 'App\Http\Controllers\AuthController@login');
@@ -50,7 +47,6 @@ Route::group([
 
 // Actions that don't require authentication
 Route::group([
-    "middleware" => "local",
     "prefix" => "actions"
 ], function ($router) {
     Route::get("send-verification-code", "App\Http\Controllers\ActionController@sendVerificationCode");
