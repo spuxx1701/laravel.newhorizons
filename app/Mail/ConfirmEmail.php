@@ -11,6 +11,7 @@ use App\Models\EmailVerification;
 class ConfirmEmail extends Mailable
 {
     use Queueable, SerializesModels;
+    public $frontendUrl;
     public $user;
     public $verificationCode;
 
@@ -23,6 +24,7 @@ class ConfirmEmail extends Mailable
     {
         $this->user = $user;
         $this->verificationCode = EmailVerification::firstWhere("user_id", $user->id)->id;
+        $this->frontendUrl = env("FRONTEND_URL");
     }
 
     /**
