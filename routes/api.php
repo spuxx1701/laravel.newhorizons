@@ -20,11 +20,11 @@ use Illuminate\Validation\ValidationException;
 Route::group([], function ($router) {
     JsonApi::register('default')->withNamespace('App\Http\Controllers\Api')->singularControllers()->routes(function ($api) {
         $api->resource('bug-reports')->only("create");
-        $api->resource("users")->relationships(function ($relations) {
+        $api->resource("users")->only("create")->middleware("throttle:sign-up")->controller()->relationships(function ($relations) {
             $relations->hasMany("userRoles");
-        })->only("create")->controller();
+        });
         $api->resource("email-verifications")->only("read")->controller();
-        $api->resource("password-resets")->only("read", "update")->controller()->middleware("throttle:reset-password");/*->routes(function ($actions) {
+        $api->resource("password-resets")->only("read", "update")->controller()->middleware("throttle:reset-password-update");/*->routes(function ($actions) {
             $actions->post("{record}/update-password", "updatePassword");
         })*/;
     });
@@ -49,8 +49,8 @@ Route::group([
 Route::group([
     "prefix" => "actions"
 ], function ($router) {
-    Route::get("send-verification-code", "App\Http\Controllers\ActionController@sendVerificationCode");
-    Route::get("send-password-reset-code", "App\Http\Controllers\ActionController@sendPasswordResetCode")->middleware("throttle:reset-password");
+    Route::get("send-verification-code", "App\Http\Controllers\ActionController@sendVerificationCode")->middleware("throttle:email-verification-request");
+    Route::get("send-password-reset-code", "App\Http\Controllers\ActionController@sendPasswordResetCode")->middleware("throttle:reset-password-request");
 });
 
 Route::fallback(function () {
