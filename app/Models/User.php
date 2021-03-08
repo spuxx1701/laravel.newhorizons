@@ -11,7 +11,7 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
 
 class User extends Authenticatable implements MustVerifyEmail, JWTSubject
 {
-    use HasFactory, Notifiable; //HasApiTokens (Sanctum)
+    use HasFactory, Notifiable;
     protected $table = "users";
 
     /**

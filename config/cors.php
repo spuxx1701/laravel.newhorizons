@@ -15,11 +15,11 @@ return [
     |
     */
 
-    'paths' => ['api/*', 'sanctum/*', 'auth/*', 'request/*'],
+    'paths' => ['api/*', 'auth/*', 'actions/*'],
 
     'allowed_methods' => ['*'],
 
-    'allowed_origins' => ['*'],
+    'allowed_origins' => [env("CORS_SAME_ORIGIN")],
 
     'allowed_origins_patterns' => [],
 

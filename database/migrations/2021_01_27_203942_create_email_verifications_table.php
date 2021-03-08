@@ -15,7 +15,7 @@ class CreateEmailVerificationsTable extends Migration
     {
         Schema::create('email_verifications', function (Blueprint $table) {
             $table->uuid("id")->primary();
-            $table->bigInteger(("user_id"));
+            $table->bigInteger(("user_id"))->unique();
             $table->string("email");
             $table->timestamps();
         });

@@ -53,7 +53,7 @@ return [
     */
 
     'url' => env('APP_URL', 'http://localhost'),
-
+    'frontendUrl' => env('FRONTEND_URL', 'https://www.new-horizons-game.com'),
     'asset_url' => env('ASSET_URL', null),
 
     /*

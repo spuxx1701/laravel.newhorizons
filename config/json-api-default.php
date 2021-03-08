@@ -50,7 +50,7 @@ return [
     | different here. E.g. `App\Models`.
     |
     */
-    'model-namespace' => null,
+    'model-namespace' => '\App\Models',
 
     /*
     |--------------------------------------------------------------------------
@@ -68,7 +68,8 @@ return [
     'resources' => [
         'bug-reports' => \App\Models\BugReport::class,
         'users' => \App\Models\User::class,
-        'email-verifications' => \App\Models\EmailVerification::class
+        'email-verifications' => \App\Models\EmailVerification::class,
+        'password-resets' => \App\Models\PasswordReset::class
     ],
 
     /*

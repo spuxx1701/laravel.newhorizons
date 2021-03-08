@@ -4,7 +4,6 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
-use App\Models\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,24 +16,30 @@ use App\Models\User;
 |
 */
 
-// JSONApi
+// JSONApi (local, not authenticated)
 Route::group([
-    "middleware" => "api-local"
+    "middleware" => "local"
 ], function ($router) {
     JsonApi::register('default')->withNamespace('App\Http\Controllers\Api')->singularControllers()->routes(function ($api) {
         $api->resource('bug-reports');
         $api->resource("users")->relationships(function ($relations) {
             $relations->hasMany("userRoles");
         })->only("create")->controller();
-        $api->resource("email-verifications")->only("read")->controller()/*->routes(function ($emailVerifications) {
-            $emailVerifications->get('{record}/request', 'request');
+        $api->resource("email-verifications")->only("read")->controller();
+        $api->resource("password-resets")->only("read", "update")->controller()/*->routes(function ($actions) {
+            $actions->post("{record}/update-password", "updatePassword");
         })*/;
     });
 });
 
-// Authorization
+/*// JSONApi (local, authenticated)
 Route::group([
-    'middleware' => 'api-local',
+    'middleware' => ['api-local']
+]);*/
+
+// Authentication
+Route::group([
+    "middleware" => "local",
     'prefix' => 'auth'
 ], function ($router) {
     Route::post('login', 'App\Http\Controllers\AuthController@login');
@@ -45,10 +50,11 @@ Route::group([
 
 // Actions that don't require authentication
 Route::group([
-    "middleware" => "api-local",
+    "middleware" => "local",
     "prefix" => "actions"
 ], function ($router) {
     Route::get("send-verification-code", "App\Http\Controllers\ActionController@sendVerificationCode");
+    Route::get("send-password-reset-code", "App\Http\Controllers\ActionController@sendPasswordResetCode");
 });
 
 Route::fallback(function () {
