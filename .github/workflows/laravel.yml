@@ -40,7 +40,7 @@ jobs:
             git checkout -f
             git pull origin master
             composer update
-            php artisan migrate
-            php artisan cache:clear
-            php artisan route:cache
-            php artisan config:cache
+            /opt/plesk/php/7.4/bin/php artisan migrate
+            /opt/plesk/php/7.4/bin/php artisan cache:clear
+            /opt/plesk/php/7.4/bin/php artisan route:cache
+            /opt/plesk/php/7.4/bin/php artisan config:cache
