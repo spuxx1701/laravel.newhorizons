@@ -10,10 +10,6 @@ This repository stores New Horizons' backend code. The New Horizons backend syst
 
 At this moment, I do not support contributions to the New Horizons source code.
 
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
 ## Security Vulnerabilities
 
 If you discover a security vulnerability within the New Horizons source code, please send me an e-amil via <a href="mailto:kontakt@leopoldhock.de">kontakt@leopoldhock.de</a>.
