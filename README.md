@@ -1,4 +1,4 @@
-<p align="center"><a href="https://new-horizons-game.com" target="_blank"><img src="https://new-horizons-game.com/assets/logo/banner-teal-dark.png"></a></p>
+<p align="center"><a href="https://new-horizons-game.com" target="_blank"><img src="https://new-horizons-game.com/assets/logo/banner-teal-dark.png" width="600px"></a></p>
 
 ## About New Horizons
 <a href=https://www.new-horizons-game.com>New Horizons</a> is both a web application and a pen & paper tabletop game. It's aims to bring togeter the best of both the digtal and the analog world: Play classic tabletop with a paper character sheet, a pen, dice and - of course - good friends. Create and edit characters digitally without having to perform calculations manually and enjoy playing a game based on a complex and and carefully crafted ruleset without the need to know any of it in detail.
