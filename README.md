@@ -4,7 +4,7 @@
 <a href=https://www.new-horizons-game.com>New Horizons</a> is both a web application and a pen & paper tabletop game. It's aims to bring togeter the best of both the digtal and the analog world: Play classic tabletop with a paper character sheet, a pen, dice and - of course - good friends. Create and edit characters digitally without having to perform calculations manually and enjoy playing a game based on a complex and and carefully crafted ruleset without the need to know any of it in detail.
 
 ## About this repository
-This repository stores New Horizons' backend code. The New Horizons backend system ist powered by a href="https://www.laravel.com">laravel</a>, a robust fullstack web application framework. To run the code, please follow the instructions on the laravel website.
+This repository stores New Horizons' backend code. The New Horizons backend system ist powered by <a href="https://www.laravel.com">laravel</a>, a robust fullstack web application framework. To run the code, please follow the instructions on the laravel website.
 
 ## Contributing
 
